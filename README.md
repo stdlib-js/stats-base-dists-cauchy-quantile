@@ -30,10 +30,14 @@ The [quantile function][quantile-function] for a [Cauchy][cauchy-distribution] r
 
 <!-- <equation class="equation" label="eq:cauchy_cauchy_quantile_function" align="center" raw="Q(p; x_0,\gamma) = x_0 + \gamma\,\tan\left[\pi\left(p-\tfrac{1}{2}\right)\right]" alt="Quantile function for a Cauchy distribution."> -->
 
-<div class="equation" align="center" data-raw-text="Q(p; x_0,\gamma) = x_0 + \gamma\,\tan\left[\pi\left(p-\tfrac{1}{2}\right)\right]" data-equation="eq:cauchy_cauchy_quantile_function">
+```math
+Q(p; x_0,\gamma) = x_0 + \gamma\,\tan\left[\pi\left(p-\tfrac{1}{2}\right)\right]
+```
+
+<!-- <div class="equation" align="center" data-raw-text="Q(p; x_0,\gamma) = x_0 + \gamma\,\tan\left[\pi\left(p-\tfrac{1}{2}\right)\right]" data-equation="eq:cauchy_cauchy_quantile_function">
     <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@591cf9d5c3a0cd3c1ceec961e5c49d73a68374cb/lib/node_modules/@stdlib/stats/base/dists/cauchy/quantile/docs/img/equation_cauchy_cauchy_quantile_function.svg" alt="Quantile function for a Cauchy distribution.">
     <br>
-</div>
+</div> -->
 
 <!-- </equation> -->
 
@@ -226,7 +230,7 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 -->
 
 [chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://gitter.im/stdlib-js/stdlib/
+[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
 
 [stdlib]: https://github.com/stdlib-js/stdlib
 
