@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-04-07)
+## Unreleased (2025-05-04)
 
 <section class="commits">
 
@@ -12,6 +12,7 @@
 
 <details>
 
+-   [`ca3d958`](https://github.com/stdlib-js/stdlib/commit/ca3d958f22927d6a6d4af71f50b92b5f7be27d7c) - **docs:** replace manual `for` loop in examples [(#6919)](https://github.com/stdlib-js/stdlib/pull/6919) _(by Harsh, Philipp Burckhardt)_
 -   [`f2d2150`](https://github.com/stdlib-js/stdlib/commit/f2d21507493d82265ec30daa3aa00a0829e902c9) - **bench:** refactor random number generation in `stats/base/dists/cauchy` [(#4850)](https://github.com/stdlib-js/stdlib/pull/4850) _(by Karan Anand)_
 
 </details>
@@ -24,9 +25,11 @@
 
 ### Contributors
 
-A total of 1 person contributed to this release. Thank you to this contributor:
+A total of 3 people contributed to this release. Thank you to the following contributors:
 
+-   Harsh
 -   Karan Anand
+-   Philipp Burckhardt
 
 </section>
 
