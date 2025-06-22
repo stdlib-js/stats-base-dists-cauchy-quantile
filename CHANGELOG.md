@@ -4,7 +4,29 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-05-19)
+## Unreleased (2025-06-22)
+
+<section class="features">
+
+### Features
+
+-   [`2ccda3e`](https://github.com/stdlib-js/stdlib/commit/2ccda3eb642c84dc52ea2cf2c9f20adb3e5382d6) - add C impolementation for `stdlib/stats/base/dists/cauchy/quantile` [(#4600)](https://github.com/stdlib-js/stdlib/pull/4600)
+
+</section>
+
+<!-- /.features -->
+
+<section class="issues">
+
+### Closed Issues
+
+This release closes the following issue:
+
+[#3486](https://github.com/stdlib-js/stdlib/issues/3486)
+
+</section>
+
+<!-- /.issues -->
 
 <section class="commits">
 
@@ -12,6 +34,7 @@
 
 <details>
 
+-   [`2ccda3e`](https://github.com/stdlib-js/stdlib/commit/2ccda3eb642c84dc52ea2cf2c9f20adb3e5382d6) - **feat:** add C impolementation for `stdlib/stats/base/dists/cauchy/quantile` [(#4600)](https://github.com/stdlib-js/stdlib/pull/4600) _(by Nishchay Rajput, Philipp Burckhardt)_
 -   [`f025bc3`](https://github.com/stdlib-js/stdlib/commit/f025bc39e4761a1c7dee8bf781581b75868b3a89) - **bench:** update random value generation [(#6954)](https://github.com/stdlib-js/stdlib/pull/6954) _(by Harsh)_
 -   [`ca3d958`](https://github.com/stdlib-js/stdlib/commit/ca3d958f22927d6a6d4af71f50b92b5f7be27d7c) - **docs:** replace manual `for` loop in examples [(#6919)](https://github.com/stdlib-js/stdlib/pull/6919) _(by Harsh, Philipp Burckhardt)_
 -   [`f2d2150`](https://github.com/stdlib-js/stdlib/commit/f2d21507493d82265ec30daa3aa00a0829e902c9) - **bench:** refactor random number generation in `stats/base/dists/cauchy` [(#4850)](https://github.com/stdlib-js/stdlib/pull/4850) _(by Karan Anand)_
@@ -26,10 +49,11 @@
 
 ### Contributors
 
-A total of 3 people contributed to this release. Thank you to the following contributors:
+A total of 4 people contributed to this release. Thank you to the following contributors:
 
 -   Harsh
 -   Karan Anand
+-   Nishchay Rajput
 -   Philipp Burckhardt
 
 </section>
