@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-06-22)
+## Unreleased (2025-06-30)
 
 <section class="features">
 
@@ -34,6 +34,7 @@ This release closes the following issue:
 
 <details>
 
+-   [`0a23889`](https://github.com/stdlib-js/stdlib/commit/0a23889dd55afcd8f1a85cd208a2397c931637bd) - **test:** increase tolerances for passing tests _(by Philipp Burckhardt)_
 -   [`ab5d777`](https://github.com/stdlib-js/stdlib/commit/ab5d777cae4eecdcce916060cf4ca2b77825e639) - **chore:** clean-up _(by Athan Reines)_
 -   [`555255c`](https://github.com/stdlib-js/stdlib/commit/555255c2ee6c26f065f0bb20eec9314c8d1d2263) - **docs:** update `stats/base/dists/cauchy` examples to use Greek symbols _(by Philipp Burckhardt)_
 -   [`2ccda3e`](https://github.com/stdlib-js/stdlib/commit/2ccda3eb642c84dc52ea2cf2c9f20adb3e5382d6) - **feat:** add C impolementation for `stdlib/stats/base/dists/cauchy/quantile` [(#4600)](https://github.com/stdlib-js/stdlib/pull/4600) _(by Nishchay Rajput, Philipp Burckhardt)_
