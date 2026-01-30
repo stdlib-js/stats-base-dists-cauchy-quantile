@@ -58,20 +58,32 @@ for `0 <= p <= 1`, where `x0` is the location parameter and `gamma > 0` is the s
 
 <!-- /.intro -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/stats-base-dists-cauchy-quantile
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-import quantile from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-cauchy-quantile@deno/mod.js';
-```
-
-You can also import the following named exports from the package:
-
-```javascript
-import { factory } from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-cauchy-quantile@deno/mod.js';
+var quantile = require( '@stdlib/stats-base-dists-cauchy-quantile' );
 ```
 
 #### quantile( p, x0, gamma )
@@ -147,10 +159,10 @@ y = myquantile( 0.8 );
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-import uniform from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-array-uniform@deno/mod.js';
-import logEachMap from 'https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each-map@deno/mod.js';
-import EPS from 'https://cdn.jsdelivr.net/gh/stdlib-js/constants-float64-eps@deno/mod.js';
-import quantile from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-cauchy-quantile@deno/mod.js';
+var uniform = require( '@stdlib/random-array-uniform' );
+var logEachMap = require( '@stdlib/console-log-each-map' );
+var EPS = require( '@stdlib/constants-float64-eps' );
+var quantile = require( '@stdlib/stats-base-dists-cauchy-quantile' );
 
 var opts = {
     'dtype': 'float64'
@@ -168,7 +180,102 @@ logEachMap( 'p: %0.4f, x0: %0.4f γ: %0.4f, Q(p;x0,γ): %0.4f', p, x0, gamma, qu
 
 <!-- C interface documentation. -->
 
+* * *
 
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/stats/base/dists/cauchy/quantile.h"
+```
+
+#### stdlib_base_dists_cauchy_quantile( p, x0, gamma )
+
+Evaluates the [quantile function][quantile-function] of a [Cauchy][cauchy-distribution] distribution with location parameter `x0` and scale parameter `gamma`.
+
+```c
+double out = stdlib_base_dists_cauchy_quantile( 0.3, 2.0, 2.0 );
+// returns ~0.547
+```
+
+The function accepts the following arguments:
+
+-   **p**: `[in] double` probability.
+-   **x0**: `[in] double` location parameter.
+-   **gamma**: `[in] double` scale parameter.
+
+```c
+double stdlib_base_dists_cauchy_quantile( const double p, const double x0, const double gamma );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/stats/base/dists/cauchy/quantile.h"
+#include "stdlib/constants/float64/eps.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+static double random_uniform( const double min, const double max ) {
+    double v = (double)rand() / ( (double)RAND_MAX + 1.0 );
+    return min + ( v*(max-min) );
+}
+
+int main( void ) {
+    double gamma;
+    double x0;
+    double y;
+    double p;
+    int i;
+
+    for ( i = 0; i < 25; i++ ) {
+        p = random_uniform( 0.0, 1.0 );
+        x0 = random_uniform( -5.0, 5.0 );
+        gamma = random_uniform( STDLIB_CONSTANT_FLOAT64_EPS, 20.0 );
+        y = stdlib_base_dists_cauchy_quantile( p, x0, gamma );
+        printf( "p: %lf, x0: %lf, γ: %lf, Q(p;x0,γ): %lf\n", p, x0, gamma, y );
+    }
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 <!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
@@ -195,7 +302,7 @@ logEachMap( 'p: %0.4f, x0: %0.4f γ: %0.4f, Q(p;x0,γ): %0.4f', p, x0, gamma, qu
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
@@ -212,7 +319,7 @@ See [LICENSE][stdlib-license].
 
 ## Copyright
 
-Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
+Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 
 </section>
 
@@ -225,8 +332,8 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 [npm-image]: http://img.shields.io/npm/v/@stdlib/stats-base-dists-cauchy-quantile.svg
 [npm-url]: https://npmjs.org/package/@stdlib/stats-base-dists-cauchy-quantile
 
-[test-image]: https://github.com/stdlib-js/stats-base-dists-cauchy-quantile/actions/workflows/test.yml/badge.svg?branch=main
-[test-url]: https://github.com/stdlib-js/stats-base-dists-cauchy-quantile/actions/workflows/test.yml?query=branch:main
+[test-image]: https://github.com/stdlib-js/stats-base-dists-cauchy-quantile/actions/workflows/test.yml/badge.svg?branch=v0.3.0
+[test-url]: https://github.com/stdlib-js/stats-base-dists-cauchy-quantile/actions/workflows/test.yml?query=branch:v0.3.0
 
 [coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/stats-base-dists-cauchy-quantile/main.svg
 [coverage-url]: https://codecov.io/github/stdlib-js/stats-base-dists-cauchy-quantile?branch=main
@@ -238,8 +345,8 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 
 -->
 
-[chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
+[chat-image]: https://img.shields.io/badge/zulip-join_chat-brightgreen.svg
+[chat-url]: https://stdlib.zulipchat.com
 
 [stdlib]: https://github.com/stdlib-js/stdlib
 
