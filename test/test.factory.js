@@ -1,0 +1,191 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var tape = require( 'tape' );
+var isAlmostSameValue = require( '@stdlib/assert-is-almost-same-value' );
+var isnan = require( '@stdlib/math-base-assert-is-nan' );
+var PINF = require( '@stdlib/constants-float64-pinf' );
+var NINF = require( '@stdlib/constants-float64-ninf' );
+var factory = require( './../lib/factory.js' );
+
+
+// FIXTURES //
+
+var largeGamma = require( './fixtures/julia/large_gamma.json' );
+var negativeMedian = require( './fixtures/julia/negative_median.json' );
+var positiveMedian = require( './fixtures/julia/positive_median.json' );
+
+
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof factory, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function returns a function', function test( t ) {
+	var quantile = factory( 0.0, 1.0 );
+	t.strictEqual( typeof quantile, 'function', 'returns expected value' );
+	t.end();
+});
+
+tape( 'if provided `NaN` for any parameter, the created function returns `NaN`', function test( t ) {
+	var quantile;
+	var y;
+
+	quantile = factory( 0.0, 1.0 );
+	y = quantile( NaN );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( NaN, 1.0 );
+	y = quantile( 0.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( 1.0, NaN );
+	y = quantile( 0.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( NaN, NaN );
+	y = quantile( 0.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( NaN, NaN );
+	y = quantile( NaN );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a finite `x0` and `gamma`, the function returns a function which returns `NaN` when provided a number outside `[0,1]` for `p`', function test( t ) {
+	var quantile;
+	var y;
+
+	quantile = factory( 0.0, 1.0 );
+	y = quantile( -0.1 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	y = quantile( 1.1 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a nonpositive `gamma`, the created function always returns `NaN`', function test( t ) {
+	var quantile;
+	var y;
+
+	quantile = factory( 0.0, -1.0 );
+	y = quantile( 2.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	y = quantile( 0.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( 0.0, 0.0 );
+	y = quantile( 0.5 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	y = quantile( 0.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( 0.0, NINF );
+	y = quantile( 2.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( PINF, NINF );
+	y = quantile( 2.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( NINF, NINF );
+	y = quantile( 2.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	quantile = factory( NaN, NINF );
+	y = quantile( 2.0 );
+	t.strictEqual( isnan( y ), true, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'the created function evaluates the quantile function at `p` given parameters `x0` and `gamma` (large `gamma`)', function test( t ) {
+	var expected;
+	var quantile;
+	var gamma;
+	var x0;
+	var p;
+	var y;
+	var i;
+
+	expected = largeGamma.expected;
+	p = largeGamma.p;
+	x0 = largeGamma.x0;
+	gamma = largeGamma.gamma;
+	for ( i = 0; i < p.length; i++ ) {
+		quantile = factory( x0[i], gamma[i] );
+		y = quantile( p[i] );
+		t.strictEqual( isAlmostSameValue( y, expected[ i ], 0 ), true, 'returns expected value' );
+	}
+	t.end();
+});
+
+tape( 'the created function evaluates the quantile function at `p` given `x0` and `gamma` (`x0 > 0`)', function test( t ) {
+	var expected;
+	var quantile;
+	var gamma;
+	var x0;
+	var p;
+	var y;
+	var i;
+
+	expected = positiveMedian.expected;
+	p = positiveMedian.p;
+	x0 = positiveMedian.x0;
+	gamma = positiveMedian.gamma;
+	for ( i = 0; i < p.length; i++ ) {
+		quantile = factory( x0[i], gamma[i] );
+		y = quantile( p[i] );
+		t.strictEqual( isAlmostSameValue( y, expected[ i ], 0 ), true, 'returns expected value' );
+	}
+	t.end();
+});
+
+tape( 'the created function evaluates the quantile function at `p` given `x0` and `gamma` (`x0 < 0`)', function test( t ) {
+	var expected;
+	var quantile;
+	var gamma;
+	var x0;
+	var p;
+	var y;
+	var i;
+
+	expected = negativeMedian.expected;
+	p = negativeMedian.p;
+	x0 = negativeMedian.x0;
+	gamma = negativeMedian.gamma;
+	for ( i = 0; i < p.length; i++ ) {
+		quantile = factory( x0[i], gamma[i] );
+		y = quantile( p[i] );
+		t.strictEqual( isAlmostSameValue( y, expected[ i ], 0 ), true, 'returns expected value' );
+	}
+	t.end();
+});
